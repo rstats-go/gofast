@@ -73,7 +73,7 @@ extern "C" {
 #endif
 
 
-extern GoInt32 Twice(GoInt32 p0);
+extern GoString Gofast(GoString p0);
 
 #ifdef __cplusplus
 }

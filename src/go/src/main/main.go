@@ -9,9 +9,9 @@ package main
 import "C"
 import "gofast"
 
-//export Twice
-func Twice( x int32 ) int32 {
-  return gofast.Twice(x)
+//export Gofast
+func Gofast( x string ) string {
+  return gofast.Gofast(x)
 }
 
 func main() {}
