@@ -22,7 +22,7 @@ func Gofast( x string ) C.SEXP {
   for i, s := range functions {
     var cs *C.char = (*C.char)( unsafe.Pointer(& []byte(s) [0]))
 
-    C.SET_STRING_ELT( out, C.R_xlen_t(i), C.Rf_mkChar(cs) )
+    C.SET_STRING_ELT( out, C.R_xlen_t(i), C.Rf_mkCharLenCE( cs, C.int(len(s)), C.CE_UTF8 ) )
   }
 
   return out ;
