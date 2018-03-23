@@ -8,7 +8,7 @@ package main
 */
 import "C"
 import "gofast"
-import "unsafe"
+// import "unsafe"
 
 //export Gofast
 func Gofast( x string ) C.SEXP {
@@ -20,9 +20,7 @@ func Gofast( x string ) C.SEXP {
   defer C.Rf_unprotect(1)
 
   for i, s := range functions {
-    var cs *C.char = (*C.char)( unsafe.Pointer(& []byte(s) [0]))
-
-    C.SET_STRING_ELT( out, C.R_xlen_t(i), C.Rf_mkCharLenCE( cs, C.int(len(s)), C.CE_UTF8 ) )
+    C.SET_STRING_ELT( out, C.R_xlen_t(i), C.Rf_mkCharLenCE( C._GoStringPtr(s), C.int(len(s)), C.CE_UTF8 ) )
   }
 
   return out ;
