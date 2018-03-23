@@ -8,7 +8,6 @@ package main
 */
 import "C"
 import "gofast"
-// import "unsafe"
 
 //export Gofast
 func Gofast( x string ) C.SEXP {
