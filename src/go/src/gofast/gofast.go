@@ -1,23 +1,29 @@
 package gofast
 
 import (
-	"fmt"
-	// "go/ast"
+	"go/ast"
 	"go/parser"
-	// "go/printer"
 	"go/token"
 	"log"
-	// "os"
 )
 
-func Gofast( code string ) string {
+func Gofast( code string ) []string {
   fset := token.NewFileSet()
-	_, err := parser.ParseFile(fset, "", code, parser.ParseComments)
+	node, err := parser.ParseFile(fset, "", code, parser.ParseComments)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println("########### Manual Iteration ###########")
+  functions := []string{} ;
 
-  return code
+	ast.Inspect(node, func(n ast.Node) bool {
+		// Find Functions
+		fn, ok := n.(*ast.FuncDecl)
+		if ok {
+			functions = append( functions, fn.Name.Name )
+		}
+		return true
+	})
+
+  return functions
 }

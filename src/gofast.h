@@ -73,7 +73,7 @@ extern "C" {
 #endif
 
 
-extern GoString Gofast(GoString p0);
+extern SEXP Gofast(GoString p0);
 
 #ifdef __cplusplus
 }
